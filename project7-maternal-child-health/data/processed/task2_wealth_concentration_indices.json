@@ -1,0 +1,38 @@
+{
+  "status": "recovered_not_yet_reproduced",
+  "description": "Erreygers/Wagstaff-style concentration indices (rineq::ci(), type='CIw') quantifying how each indicator is distributed across the DHS continuous wealth score (v191). Negative = outcome concentrated among the poor; positive = concentrated among the wealthy. Complementary to the 3-category (Low/Middle/High) wealth breakdown surfaced on the Regional Analysis page -- it answers the same 'does this vary by wealth' question using the full wealth continuum rather than discrete bins.",
+  "provenance": {
+    "source_repo": "andyombogo/Eneza-Data-Science-Residential-training-2026",
+    "source_branch": "task2-regional-indicators",
+    "source_commit": "f90440b01dde77af0d38322e9f6930217f6dbe8b",
+    "source_file": "Project7_task2.pdf",
+    "rendered_date": "2026-07-31",
+    "extracted_by": "reading the rendered PDF's concentration-curve figures directly (Figures 4, 7, 10) -- the underlying .qmd's inline prose stats did not evaluate due to a missing `r` engine prefix, but the code-chunk-generated plots, including their annotated values, rendered correctly",
+    "note": "The source commit's git tree is not reachable via a normal `git checkout` of task2-regional-indicators -- the file exists as a git blob but the branch tip's recorded tree does not include it (likely a broken commit from a GUI tool). Recovered via `git cat-file -p <blob-sha>`.",
+    "sample_note": "Computed on a 12-35 month age band (harmonized across all three indicators), matching the team's app-wide standardization (see docs/methodology.md); the repo's legacy 6-59 month county stunting CSV is kept separately for the v1 intervention ranking's internal consistency (NATIONAL_STUNTING_PCT_6_59_LEGACY in app/utils.py)."
+  },
+  "indicators": [
+    {
+      "indicator": "stunting",
+      "concentration_index": -0.25,
+      "ci_lower": -0.28,
+      "ci_upper": -0.21,
+      "interpretation": "Stunting is concentrated among poorer children -- a poorer child is meaningfully more likely to be stunted than a wealthier one."
+    },
+    {
+      "indicator": "full_immunisation",
+      "concentration_index": 0.16,
+      "ci_lower": 0.12,
+      "ci_upper": 0.19,
+      "interpretation": "Full immunisation is concentrated among wealthier children -- a poorer child is meaningfully less likely to be fully vaccinated. A smaller gap than stunting's, but the same direction of inequality.",
+      "sign_flip_note": "Recovered source reported this as non_full_immunisation (CI -0.16, 95% CI -0.19 to -0.12). Restated here in the positive-coverage direction (full_immunisation) by negating the index and swapping/negating the CI bounds -- exact for a binary indicator only when its prevalence is close to 50% (full immunisation = 50.3% nationally here), which holds to the precision reported (2 d.p.)."
+    },
+    {
+      "indicator": "skilled_birth_attendance",
+      "concentration_index": 0.66,
+      "ci_lower": 0.62,
+      "ci_upper": 0.7,
+      "interpretation": "Skilled birth attendance is heavily concentrated among wealthier households -- the largest wealth gap of the three indicators, and the strongest single equity finding in this analysis so far."
+    }
+  ]
+}
